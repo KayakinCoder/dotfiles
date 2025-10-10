@@ -1,4 +1,4 @@
-for script in /workspaces/dotfiles/tools/preinstall/*.sh; do
+for script in ./tools/preinstall/*.sh; do
   /bin/bash "$script"
 done
 
