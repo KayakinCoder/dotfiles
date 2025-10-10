@@ -3,3 +3,10 @@
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
 cp /workspaces/devcontainer-fd/.build/tools/starship.toml ~/.config/starship.toml
+
+# use starship on startup
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+# needed for starship fonts to work correctly
+echo 'export LC_ALL="en_US.UTF-8"' >> ~/.bashrc
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
