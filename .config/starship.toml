@@ -23,7 +23,7 @@ $character"""
 
 [git_branch]
 format='\[[$symbol$branch]($style)\]'
-symbol="\ue0a0 "
+symbol="🌲 "
 
 [git_metrics]
 format='(\[([+$added]($added_style))( [-$deleted]($deleted_style))\])'
