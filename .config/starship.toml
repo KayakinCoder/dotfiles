@@ -1,0 +1,39 @@
+# only ever display these specific plugins. by default, starship enables 50+ plugins,many of which we really
+# don't want to see. note that some plugins, like git_metrics, are disabled by default. you'll need to add
+# disabled=false to their specific configuration section below
+
+format = """
+$username\
+$hostname\
+$localip\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$terraform\
+$aws\
+$line_break\
+$status\
+$character"""
+
+# we like the preset "bracketed style": https://starship.rs/presets/bracketed-segments
+# so for each plugin, we have to update the format
+
+[git_branch]
+format='\[[$symbol$branch]($style)\]'
+symbol="🌲 "
+
+[git_metrics]
+format='(\[([+$added]($added_style))( [-$deleted]($deleted_style))\])'
+disabled=false
+
+[git_status]
+format='([\[$all_status$ahead_behind\]]($style))'
+
+[terraform]
+format='\[[$symbol$workspace]($style)\]'
+
+[aws]
+format='\[[$symbol($profile)(\($region\))( \[$duration\])]($style)\]'
