@@ -7,3 +7,6 @@ alias aws-k='export AWS_PROFILE=k-dev && aws sso login --profile k-dev'
 
 # github (note: most gh aliases are in /.config/gh/config.yml)
 alias gh-a='unset GITHUB_TOKEN && gh auth login'
+
+# my favorite git commands
+alias gitl='git log --graph --oneline --decorate'
