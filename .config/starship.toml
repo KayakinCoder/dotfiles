@@ -14,6 +14,7 @@ $git_status\
 $git_metrics\
 $terraform\
 $aws\
+$python\
 $line_break\
 $status\
 $character"""
@@ -37,3 +38,6 @@ format='\[[$symbol$workspace]($style)\]'
 
 [aws]
 format='\[[$symbol($profile)(\($region\))( \[$duration\])]($style)\]'
+
+[python]
+format='\[[${symbol}${pyenv_prefix}(${version})]($style)\]'
