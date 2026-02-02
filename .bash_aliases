@@ -10,3 +10,4 @@ alias gh-a='unset GITHUB_TOKEN && gh auth login'
 
 # my favorite git commands
 alias gitl='git log --graph --oneline --decorate'
+alias gitpp='git pull && git fetch --prune'
