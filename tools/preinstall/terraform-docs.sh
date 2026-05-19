@@ -4,4 +4,3 @@ curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.20.0/terrafor
 tar -xzf terraform-docs.tar.gz
 chmod +x terraform-docs
 sudo mv terraform-docs /usr/local/bin/terraform-docs
-cd /workspaces
