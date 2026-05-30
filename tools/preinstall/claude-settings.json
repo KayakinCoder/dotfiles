@@ -6,5 +6,10 @@
   "env": {
     "CLAUDE_CODE_NEW_INIT": 1
   },
+  "enabledPlugins": {
+    "aws-core@claude-plugins-official": true,
+    "azure@claude-plugins-official": true,
+    "buildkite@buildkite-skills": true
+  },
   "theme": "auto"
 }
