@@ -17,10 +17,14 @@ repo=$(echo "$input" | jq -r '.workspace.repo | if . then .owner + "/" + .name e
 
 # --- git branch (read from filesystem, skipping optional locks) ---
 branch=""
+in_git_repo=false
 if [ -n "$cwd" ]; then
   # Resolve ~ back to $HOME for git
   real_cwd="${cwd/#\~/$HOME}"
   branch=$(git -C "$real_cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
+  if git -C "$real_cwd" --no-optional-locks rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    in_git_repo=true
+  fi
 fi
 
 # --- context window ---
@@ -47,34 +51,36 @@ if [ -n "$week_pct" ]; then
 fi
 
 # --- assemble parts ---
-parts=()
+# Location group: cwd, repo, branch
+location_parts=()
+[ -n "$cwd" ] && location_parts+=("$cwd")
+[ -n "$repo" ] && location_parts+=("($repo)")
+[ -n "$branch" ] && location_parts+=("[🌲 $branch]")
 
-# cwd always shown
-[ -n "$cwd" ] && parts+=("$cwd")
+# Session group: model, context, usage
+session_parts=()
+[ -n "$model" ] && session_parts+=("$model")
+[ -n "$ctx_str" ] && session_parts+=("$ctx_str")
+[ -n "$rate_str" ] && session_parts+=("$rate_str")
 
-# repo shown when available
-[ -n "$repo" ] && parts+=("($repo)")
+# Join an array with " | "
+join_parts() {
+  local joined=""
+  local part
+  for part in "$@"; do
+    if [ -z "$joined" ]; then
+      joined="$part"
+    else
+      joined="$joined | $part"
+    fi
+  done
+  printf "%s" "$joined"
+}
 
-# branch shown when available
-[ -n "$branch" ] && parts+=("[$branch]")
-
-# model always shown
-[ -n "$model" ] && parts+=("$model")
-
-# context usage when available
-[ -n "$ctx_str" ] && parts+=("$ctx_str")
-
-# rate limits when available
-[ -n "$rate_str" ] && parts+=("$rate_str")
-
-# Join with " | "
-status=""
-for part in "${parts[@]}"; do
-  if [ -z "$status" ]; then
-    status="$part"
-  else
-    status="$status | $part"
-  fi
-done
-
-printf "%s" "$status"
+if [ "$in_git_repo" = true ]; then
+  # In a git repo: location on line 1, session on its own line
+  printf "%s\n%s" "$(join_parts "${location_parts[@]}")" "$(join_parts "${session_parts[@]}")"
+else
+  # Not in a git repo: everything on one line
+  join_parts "${location_parts[@]}" "${session_parts[@]}"
+fi
