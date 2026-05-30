@@ -11,5 +11,9 @@
     "azure@claude-plugins-official": true,
     "buildkite@buildkite-skills": true
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/codespace/.claude/statusline-command.sh"
+  },
   "theme": "auto"
 }
