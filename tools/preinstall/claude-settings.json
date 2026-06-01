@@ -9,7 +9,8 @@
   "enabledPlugins": {
     "aws-core@claude-plugins-official": true,
     "azure@claude-plugins-official": true,
-    "buildkite@buildkite-skills": true
+    "buildkite@buildkite-skills": true,
+    "pulumi-authoring@pulumi-agent-skills": true
   },
   "statusLine": {
     "type": "command",
