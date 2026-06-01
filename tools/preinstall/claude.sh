@@ -10,6 +10,10 @@ claude plugin install aws-core@claude-plugins-official --scope user
 # azure plugin (https://github.com/microsoft/azure-skills)
 claude plugin install azure@claude-plugins-official --scope user
 
-# buildkite plugin
+# buildkite plugins (https://github.com/buildkite/skills)
 claude plugin marketplace add buildkite/skills
 claude plugin install buildkite@buildkite-skills
+
+# pulumi plugins (https://github.com/pulumi/agent-skills)
+claude plugin marketplace add pulumi/agent-skills
+claude plugin install pulumi-authoring
