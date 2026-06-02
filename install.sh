@@ -13,6 +13,6 @@ echo 'export AWS_DEFAULT_REGION=us-west-2' >> ~/.bashrc
 
 # claude settings
 mkdir -p ~/.claude
-cp tools/preinstall/claude-settings.json ~/.claude/settings.json
-cp tools/preinstall/claude-keybindings.json ~/.claude/keybindings.json
-cp tools/preinstall/claude-statusline-command.sh ~/.claude/statusline-command.sh
+cp tools/lib/claude-settings.json ~/.claude/settings.json
+cp tools/lib/claude-keybindings.json ~/.claude/keybindings.json
+cp tools/lib/claude-statusline-command.sh ~/.claude/statusline-command.sh
