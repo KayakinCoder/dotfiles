@@ -1,6 +1,6 @@
 # first things first, pip is needed by some downstream tools
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
-sudo apt-get install python3-pip -y
+sudo apt-get install pipx python3-pip -y
 
 # install all scripts located here. note that /tools/extra are other tools I've used in the past but don't currently
 # use regularly enough to preinstall

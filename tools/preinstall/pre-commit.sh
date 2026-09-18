@@ -1,1 +1,1 @@
-pip install pre-commit
+pipx install pre-commit
