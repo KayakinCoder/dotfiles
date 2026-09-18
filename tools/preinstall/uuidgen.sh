@@ -1,1 +1,1 @@
-sudo apt install uuid-runtime
+sudo apt-get install -y uuid-runtime
