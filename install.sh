@@ -20,4 +20,4 @@ mkdir -p ~/.claude
 cp tools/lib/claude-settings.json ~/.claude/settings.json
 cp tools/lib/claude-keybindings.json ~/.claude/keybindings.json
 cp tools/lib/claude-statusline-command.sh ~/.claude/statusline-command.sh
-cp tools/lib/CLAUDE.md ~/.claude/CLAUDE.MD
+cp tools/lib/CLAUDE.md ~/.claude/CLAUDE.md
