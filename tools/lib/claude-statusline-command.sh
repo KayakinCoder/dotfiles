@@ -27,11 +27,30 @@ if [ -n "$cwd" ]; then
   fi
 fi
 
+# --- logged-in account (team / organization) ---
+# Not in the stdin JSON; read from Claude Code's own config file instead.
+# CLAUDE_CONFIG_DIR relocates that file when set.
+claude_cfg="${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json"
+org=""
+if [ -r "$claude_cfg" ]; then
+  org=$(jq -r '.oauthAccount.organizationName // empty' "$claude_cfg" 2>/dev/null)
+fi
+
 # --- context window ---
+# used_percentage is pre-calculated. total_input + total_output = tokens currently in the window.
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+ctx_tokens=$(echo "$input" | jq -r '
+  .context_window
+  | if (.total_input_tokens // .total_output_tokens) == null then empty
+    else ((.total_input_tokens // 0) + (.total_output_tokens // 0)) end')
 ctx_str=""
 if [ -n "$used_pct" ]; then
   ctx_str=$(printf "ctx:%.0f%%" "$used_pct")
+  if [ -n "$ctx_tokens" ]; then
+    # Format as thousands with one decimal, e.g. 69.4k or 0.7k
+    tok_str=$(awk -v t="$ctx_tokens" 'BEGIN { printf "%.1fk", t / 1000 }')
+    ctx_str="$ctx_str $tok_str"
+  fi
 fi
 
 # --- Claude.ai rate limits ---
@@ -72,6 +91,7 @@ session_parts=()
 [ -n "$ctx_str" ] && session_parts+=("$ctx_str")
 [ -n "$five_str" ] && session_parts+=("$five_str")
 [ -n "$week_str" ] && session_parts+=("$week_str")
+[ -n "$org" ] && session_parts+=("$org")
 
 # Join an array with " | "
 join_parts() {
