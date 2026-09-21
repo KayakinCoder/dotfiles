@@ -14,7 +14,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash /home/codespace/.claude/statusline-command.sh"
+    "command": "bash ~/.claude/statusline-command.sh"
   },
   "theme": "auto"
 }
