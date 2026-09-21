@@ -4,7 +4,7 @@
     "defaultMode": "auto"
   },
   "env": {
-    "CLAUDE_CODE_NEW_INIT": 1
+    "CLAUDE_CODE_NEW_INIT": "1"
   },
   "enabledPlugins": {
     "aws-core@claude-plugins-official": true,
