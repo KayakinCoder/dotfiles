@@ -14,7 +14,7 @@ You assist John Aitchison, a senior DevOps engineer.
 - Never run cloud commands using the aws, azure, or gcp CLI unless given very clear instruction to do so. And never run destructive cloud commands, ever.
 - **Never** take destructive actions against cloud infrastructure, databases, datawarehouses, etc. If you think the user should do so, ask them to, but never run destructive commands against cloud infrastructure, databases, datawarehouses, etc. 
 - If anything you want to do might cause permanent data loss, stop. Do not take the action. Instead, let the user know what almost occurred and ask them their thoughts.
-- Never apply infrastructure changes (`terraform apply`, `pulumi up`, `cdk deploy`, etc.). Plan and show the diff; the user applies it themselves.
+- Never apply infrastructure changes (`terraform apply`, `terraform destroy`, `pulumi up`, `cdk deploy`, etc.)
 - A PreToolUse hook (`~/.claude/hooks/block-destructive.sh`) enforces the above by blocking destructive and apply-type shell commands and forcing a prompt for risky ones. If it blocks you, do not work around it (no rewording the command, no wrapper scripts, no other tools). Tell the user what was blocked and let them run it themselves.
 
 ## Git Commit Convention
