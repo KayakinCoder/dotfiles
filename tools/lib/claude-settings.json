@@ -1,7 +1,30 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "defaultMode": "auto"
+    "defaultMode": "auto",
+    "deny": [
+      "Bash(terraform destroy*)",
+      "Bash(tofu destroy*)",
+      "Bash(terragrunt destroy*)",
+      "Bash(terragrunt run-all destroy*)",
+      "Bash(pulumi destroy*)",
+      "Bash(cdk destroy*)",
+      "Bash(terraform apply*)",
+      "Bash(tofu apply*)",
+      "Bash(terragrunt apply*)",
+      "Bash(terragrunt run-all apply*)",
+      "Bash(pulumi up*)",
+      "Bash(cdk deploy*)",
+      "Bash(rm -rf*)",
+      "Bash(rm -fr*)",
+      "Bash(rm -Rf*)",
+      "Bash(rm -r *)",
+      "Bash(aws s3 rb*)",
+      "Bash(aws s3 rm*)",
+      "Bash(az group delete*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)"
+    ]
   },
   "env": {
     "CLAUDE_CODE_NEW_INIT": "1"
@@ -14,7 +37,9 @@
   },
   "pluginConfigs": {
     "agents-md@builtin": {
-      "options": { "instructionFiles": "claude-md-and-agents-md" }
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
     }
   },
   "statusLine": {
@@ -22,5 +47,20 @@
     "command": "bash ~/.claude/statusline-command.sh",
     "refreshInterval": 300
   },
-  "theme": "auto"
+  "theme": "auto",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/block-destructive.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking command against destructive-command guardrail"
+          }
+        ]
+      }
+    ]
+  }
 }

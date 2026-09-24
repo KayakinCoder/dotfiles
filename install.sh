@@ -20,4 +20,7 @@ mkdir -p ~/.claude
 cp tools/lib/claude-settings.json ~/.claude/settings.json
 cp tools/lib/claude-keybindings.json ~/.claude/keybindings.json
 cp tools/lib/claude-statusline-command.sh ~/.claude/statusline-command.sh
+mkdir -p ~/.claude/hooks
+cp tools/lib/claude-hooks/block-destructive.sh ~/.claude/hooks/block-destructive.sh
+chmod +x ~/.claude/hooks/block-destructive.sh
 cp tools/lib/CLAUDE.md ~/.claude/CLAUDE.md
