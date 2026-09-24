@@ -23,7 +23,37 @@
       "Bash(aws s3 rm*)",
       "Bash(az group delete*)",
       "Bash(git push --force*)",
-      "Bash(git push -f*)"
+      "Bash(git push -f*)",
+      "Read(~/.aws/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.netrc)",
+      "Read(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Read(~/.git-credentials)",
+      "Read(~/.claude/.credentials.json)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.tfstate)",
+      "Read(**/*.tfstate.*)",
+      "Edit(~/.aws/**)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.azure/**)",
+      "Edit(~/.config/gcloud/**)",
+      "Edit(~/.kube/**)",
+      "Edit(~/.claude/settings.json)",
+      "Edit(~/.claude/hooks/**)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Edit(**/*.tfstate)",
+      "Edit(**/*.tfstate.*)",
+      "Edit(**/.terraform.lock.hcl)",
+      "Edit(**/.terraform/**)"
     ]
   },
   "env": {
@@ -51,7 +81,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|mcp__.*",
         "hooks": [
           {
             "type": "command",
