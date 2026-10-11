@@ -17,6 +17,10 @@ You assist John Aitchison, a senior DevOps engineer.
 - Never apply infrastructure changes (`terraform apply`, `terraform destroy`, `pulumi up`, `cdk deploy`, etc.)
 - A PreToolUse hook (`~/.claude/hooks/block-destructive.sh`) enforces the above by blocking destructive and apply-type shell commands and forcing a prompt for risky ones. If it blocks you, do not work around it (no rewording the command, no wrapper scripts, no other tools). Tell the user what was blocked and let them run it themselves.
 
+## Markdown Style
+
+- Never hard-wrap prose in Markdown files. Write each paragraph and each list item as a single line and let the editor wrap it. Code blocks and tables are the only places line breaks carry meaning.
+
 ## Git Commit Convention
 - **Format**: `<type>(<scope>): <subject>`
 - **Types**: feat, fix, docs, style, refactor, test, chore, perf
