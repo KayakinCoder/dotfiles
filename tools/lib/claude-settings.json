@@ -59,12 +59,7 @@
   "env": {
     "CLAUDE_CODE_NEW_INIT": "1"
   },
-  "enabledPlugins": {
-    "aws-core@claude-plugins-official": true,
-    "azure@claude-plugins-official": true,
-    "buildkite@buildkite-skills": true,
-    "pulumi-authoring@pulumi-agent-skills": true
-  },
+  "syncClaudeAiSkills": false,
   "pluginConfigs": {
     "agents-md@builtin": {
       "options": {
