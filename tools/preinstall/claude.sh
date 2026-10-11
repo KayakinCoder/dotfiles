@@ -40,3 +40,16 @@ claude plugin disable databricks@databricks-agent-skills --scope user
 # microsoft docs mcp server. used by MicrosoftDocs/agent-skills
 claude mcp get microsoft-docs >/dev/null 2>&1 || \
   claude mcp add --transport http --scope user microsoft-docs https://learn.microsoft.com/api/mcp
+
+# terraform mcp server
+# hashicorp does not maintain a remote mcp, so we build one locally and let clause use it
+TF_MCP_VERSION=$(curl -fsSL https://releases.hashicorp.com/terraform-mcp-server/index.json \
+  | jq -r '.versions | keys_unsorted | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))) | sort_by(split(".") | map(tonumber)) | last')
+ARCH=$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')
+curl -fsSL "https://releases.hashicorp.com/terraform-mcp-server/${TF_MCP_VERSION}/terraform-mcp-server_${TF_MCP_VERSION}_linux_${ARCH}.zip" -o /tmp/tf-mcp.zip
+sudo unzip -o -q /tmp/tf-mcp.zip terraform-mcp-server -d /usr/local/bin
+rm /tmp/tf-mcp.zip
+
+# register it with Claude Code, idempotently
+claude mcp get terraform >/dev/null 2>&1 || \
+  claude mcp add --scope user terraform -- terraform-mcp-server stdio
