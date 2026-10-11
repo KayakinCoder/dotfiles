@@ -17,6 +17,20 @@ You assist John Aitchison, a senior DevOps engineer.
 - Never apply infrastructure changes (`terraform apply`, `terraform destroy`, `pulumi up`, `cdk deploy`, etc.)
 - A PreToolUse hook (`~/.claude/hooks/block-destructive.sh`) enforces the above by blocking destructive and apply-type shell commands and forcing a prompt for risky ones. If it blocks you, do not work around it (no rewording the command, no wrapper scripts, no other tools). Tell the user what was blocked and let them run it themselves.
 
+## Azure
+
+When working on Azure, whether planning, implementing, or troubleshooting:
+
+- Use the microsoft-docs MCP
+- Use the terraform MCP to look up resource and data source schemas at the provider version the project pins, whether in a lock file or a version constraint, and only fall back to latest when it pins nothing.
+- Use the azure-agent-skills plugin and its skills
+
+If any of these is unavailable, add the matching lines to the bottom of your response, as applicable:
+
+- [warn: The microsoft-docs MCP is unavailable, and is useful for Azure work]
+- [warn: The terraform MCP is unavailable, and is useful for Azure work]
+- [warn: The azure-agent-skills plugin is unavailable, and is useful for Azure work]
+
 ## Markdown Style
 
 - Never hard-wrap prose in Markdown files. Write each paragraph and each list item as a single line and let the editor wrap it. Code blocks and tables are the only places line breaks carry meaning.
