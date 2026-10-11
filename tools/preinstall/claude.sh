@@ -4,6 +4,10 @@
 # install claude code
 curl -fsSL https://claude.ai/install.sh | bash
 
+# some plugins (databricks, specifically) default to ssh rather than https for clone and other actions. devcontainer
+# does not have ssh; this allows for https
+export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1
+
 # anthropic's curated list of high-quality plugins (https://github.com/anthropics/claude-plugins-official and https://claude.com/plugins). may not be needed if claude is already installed, but it doesn't hurt to run it again
 claude plugin marketplace add anthropics/claude-plugins-official
 
