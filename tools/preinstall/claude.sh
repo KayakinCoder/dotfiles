@@ -11,7 +11,14 @@ claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin install aws-core@claude-plugins-official --scope user
 claude plugin disable aws-core@claude-plugins-official --scope user
 
-# azure plugin (https://github.com/microsoft/azure-skills)
+# azure: docs-oriented, login not required
+# (https://github.com/MicrosoftDocs/Agent-Skills)
+claude plugin marketplace add MicrosoftDocs/agent-skills
+claude plugin install azure-agent-skills@microsoft-agent-skills --scope user
+claude plugin disable azure-agent-skills@microsoft-agent-skills --scope user
+
+# azure: build-oriented, uses their MCP and requires azure login
+# (https://github.com/microsoft/azure-skills)
 claude plugin install azure@claude-plugins-official --scope user
 claude plugin disable azure@claude-plugins-official --scope user
 
@@ -29,3 +36,7 @@ claude plugin disable pulumi-authoring --scope user
 claude plugin marketplace add databricks/databricks-agent-skills
 claude plugin install databricks@databricks-agent-skills --scope user
 claude plugin disable databricks@databricks-agent-skills --scope user
+
+# microsoft docs mcp server. used by MicrosoftDocs/agent-skills
+claude mcp get microsoft-docs >/dev/null 2>&1 || \
+  claude mcp add --transport http --scope user microsoft-docs https://learn.microsoft.com/api/mcp
