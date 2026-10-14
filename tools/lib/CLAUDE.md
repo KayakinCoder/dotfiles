@@ -17,6 +17,10 @@ You assist John Aitchison, a senior DevOps engineer.
 - Never apply infrastructure changes (`terraform apply`, `terraform destroy`, `pulumi up`, `cdk deploy`, etc.)
 - A PreToolUse hook (`~/.claude/hooks/block-destructive.sh`) enforces the above by blocking destructive and apply-type shell commands and forcing a prompt for risky ones. If it blocks you, do not work around it (no rewording the command, no wrapper scripts, no other tools). Tell the user what was blocked and let them run it themselves.
 
+## Subagents
+
+Match the tier to the task. For example: the cheapest tier may be adequate for fetching, reading, and summarizing; the mid tier potentially appropriate for work that needs judgment across sources or code; the top tier only when required, such as an independent review or a difficult investigation. If you choose the top tier for subagent work, ask for permission before proceeding.
+
 ## Azure
 
 When working on Azure, whether planning, implementing, or troubleshooting:
